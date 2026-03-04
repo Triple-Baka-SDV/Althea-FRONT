@@ -1,0 +1,112 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2');
+}
+
+:root {
+  /* Medical e-commerce palette */
+  --background: #ffffff;
+  --foreground: #003d5c;
+  --card: #ffffff;
+  --card-foreground: #003d5c;
+  --popover: #ffffff;
+  --popover-foreground: #003d5c;
+  --primary: #00a8b5;
+  --primary-foreground: #ffffff;
+  --secondary: #d4f4f7;
+  --secondary-foreground: #003d5c;
+  --muted: #f0fafb;
+  --muted-foreground: #4a7a8f;
+  --accent: #d4f4f7;
+  --accent-foreground: #003d5c;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #d4f4f7;
+  --input: #d4f4f7;
+  --ring: #00a8b5;
+  --chart-1: #00a8b5;
+  --chart-2: #10b981;
+  --chart-3: #003d5c;
+  --chart-4: #33bfc9;
+  --chart-5: #F59E0B;
+  --radius: 0.625rem;
+
+  /* Custom medical tokens */
+  --med-cta: #00a8b5;
+  --med-bg: #d4f4f7;
+  --med-hover: #33bfc9;
+  --med-nav: #003d5c;
+  --med-available: #10b981;
+  --med-error: #ef4444;
+  --med-alert: #F59E0B;
+}
+
+@theme inline {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-med-cta: var(--med-cta);
+  --color-med-bg: var(--med-bg);
+  --color-med-hover: var(--med-hover);
+  --color-med-nav: var(--med-nav);
+  --color-med-available: var(--med-available);
+  --color-med-error: var(--med-error);
+  --color-med-alert: var(--med-alert);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+}

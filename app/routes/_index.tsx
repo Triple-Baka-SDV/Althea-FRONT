@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "MediShop - Votre pharmacie en ligne" },
+    { title: "Athlea Systems - Votre pharmacie en ligne" },
     {
       name: "description",
       content:

@@ -64,10 +64,10 @@ export function Header() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="flex size-10 items-center justify-center rounded-lg bg-med-cta">
-            <span className="text-lg font-semibold text-primary-foreground">M</span>
+            <span className="text-lg font-semibold text-primary-foreground">AT</span>
           </div>
           <span className="text-xl font-semibold text-med-nav" style={{ fontFamily: "var(--font-heading)" }}>
-            MediShop
+            Athlea Systems
           </span>
         </Link>
 

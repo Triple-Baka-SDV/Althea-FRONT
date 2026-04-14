@@ -18,6 +18,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useAuth } from "@/hooks/use-auth";
+import { UserMenu } from "@/components/user-menu";
 
 const navLinks = [
   { label: "Accueil", href: "/" },
@@ -34,6 +36,8 @@ const footerLinks = [
 ];
 
 export function Header() {
+  const { isAuthenticated, isLoading } = useAuth()
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       {/* Top bar */}
@@ -89,7 +93,7 @@ export function Header() {
           <Button variant="ghost" size="icon" aria-label="Rechercher" className="text-med-nav hover:bg-secondary hover:text-med-cta">
             <Search className="size-5" />
           </Button>
-          <Link to="/panier">
+          <Link to="/basket">
             <Button variant="ghost" size="icon" aria-label="Panier" className="relative text-med-nav hover:bg-secondary hover:text-med-cta">
               <ShoppingCart className="size-5" />
               <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
@@ -97,16 +101,12 @@ export function Header() {
               </span>
             </Button>
           </Link>
-          <Link to="/connexion">
-            <Button variant="ghost" size="icon" aria-label="Mon compte" className="text-med-nav hover:bg-secondary hover:text-med-cta">
-              <User className="size-5" />
-            </Button>
-          </Link>
+          {!isLoading && <UserMenu />}
         </div>
 
         {/* Mobile nav */}
         <div className="flex items-center gap-2 lg:hidden">
-          <Link to="/panier">
+          <Link to="/basket">
             <Button variant="ghost" size="icon" aria-label="Panier" className="relative text-med-nav">
               <ShoppingCart className="size-5" />
               <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
@@ -137,15 +137,27 @@ export function Header() {
                   </Link>
                 ))}
                 <div className="my-3 h-px bg-border" />
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/settings"
+                      className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
+                    >
+                      <User className="size-4" />
+                      Mon profil
+                    </Link>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
+                  >
+                    <User className="size-4" />
+                    Se connecter
+                  </Link>
+                )}
                 <Link
-                  to="/connexion"
-                  className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
-                >
-                  <User className="size-4" />
-                  Mon compte
-                </Link>
-                <Link
-                  to="/recherche"
+                  to="/search"
                   className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
                 >
                   <Search className="size-4" />

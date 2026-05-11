@@ -19,7 +19,7 @@ const slides: CarouselSlide[] = [
     description:
       "Profitez de notre promotion exceptionnelle sur une large selection d'equipements medicaux professionnels. Offre limitee.",
     ctaText: "Decouvrir l'offre",
-    ctaLink: "/produits",
+    ctaLink: "/products",
     bgColor: "bg-med-nav",
   },
   {
@@ -37,7 +37,7 @@ const slides: CarouselSlide[] = [
     description:
       "Commandez vos produits de sante en toute serenite. Livraison offerte partout en France metropolitaine.",
     ctaText: "Commander maintenant",
-    ctaLink: "/produits",
+    ctaLink: "/products",
     bgColor: "bg-med-nav",
   },
 ];

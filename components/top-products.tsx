@@ -88,7 +88,7 @@ export function TopProducts() {
           {topProducts.map((product) => (
             <Link
               key={product.id}
-              to={`/produits/${product.id}`}
+              to={`/products/${product.id}`}
               className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-background transition-all hover:border-med-cta hover:shadow-md"
             >
               {/* Image placeholder */}
@@ -150,7 +150,7 @@ export function TopProducts() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Link to="/produits">
+          <Link to="/products">
             <Button
               size="lg"
               className="bg-med-cta text-primary-foreground hover:bg-med-hover"

@@ -5,14 +5,14 @@ const footerNav = {
   boutique: [
     { label: "Accueil", href: "/" },
     { label: "Categories", href: "/categories" },
-    { label: "Produits", href: "/produits" },
-    { label: "Top Produits", href: "/produits?top=true" },
+    { label: "Produits", href: "/products" },
+    { label: "Top Produits", href: "/products?top=true" },
   ],
   aide: [
     { label: "Contact", href: "/contact" },
     { label: "ChatBot", href: "/chatbot" },
     { label: "FAQ", href: "/faq" },
-    { label: "Suivi de commande", href: "/compte/commandes" },
+    { label: "Suivi de commande", href: "/compte/orders" },
   ],
   legal: [
     { label: "Mentions legales", href: "/mentions-legales" },

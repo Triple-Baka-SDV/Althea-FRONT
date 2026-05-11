@@ -20,23 +20,20 @@ import {
 } from "@/components/ui/sheet";
 import { useAuth } from "@/hooks/use-auth";
 import { UserMenu } from "@/components/user-menu";
+import { useCart } from "@/context/cart-context";
 
 const navLinks = [
   { label: "Accueil", href: "/" },
-  { label: "Categories", href: "/categories" },
-  { label: "Produits", href: "/produits" },
-  { label: "Contact", href: "/contact" },
-  { label: "ChatBot", href: "/chatbot" },
+  { label: "Produits", href: "/products" },
 ];
 
 const footerLinks = [
-  { label: "Mentions legales", href: "/mentions-legales" },
-  { label: "CGU", href: "/cgu" },
-  { label: "Contact", href: "/contact" },
+  { label: "Paramètres", href: "/settings" },
 ];
 
 export function Header() {
-  const { isAuthenticated, isLoading } = useAuth()
+  const { isAuthenticated, isLoading } = useAuth();
+  const { count } = useCart();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -93,12 +90,14 @@ export function Header() {
           <Button variant="ghost" size="icon" aria-label="Rechercher" className="text-med-nav hover:bg-secondary hover:text-med-cta">
             <Search className="size-5" />
           </Button>
-          <Link to="/basket">
+          <Link to="/cart">
             <Button variant="ghost" size="icon" aria-label="Panier" className="relative text-med-nav hover:bg-secondary hover:text-med-cta">
               <ShoppingCart className="size-5" />
-              <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
-                0
-              </span>
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
+                  {count > 99 ? "99+" : count}
+                </span>
+              )}
             </Button>
           </Link>
           {!isLoading && <UserMenu />}
@@ -106,12 +105,14 @@ export function Header() {
 
         {/* Mobile nav */}
         <div className="flex items-center gap-2 lg:hidden">
-          <Link to="/basket">
+          <Link to="/cart">
             <Button variant="ghost" size="icon" aria-label="Panier" className="relative text-med-nav">
               <ShoppingCart className="size-5" />
-              <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
-                0
-              </span>
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-med-cta text-[10px] font-semibold text-primary-foreground">
+                  {count > 99 ? "99+" : count}
+                </span>
+              )}
             </Button>
           </Link>
           <Sheet>
@@ -146,6 +147,18 @@ export function Header() {
                       <User className="size-4" />
                       Mon profil
                     </Link>
+                    <Link
+                      to="/orders"
+                      className="rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
+                    >
+                      Mes commandes
+                    </Link>
+                    <Link
+                      to="/refunds"
+                      className="rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
+                    >
+                      Remboursements
+                    </Link>
                   </>
                 ) : (
                   <Link
@@ -156,13 +169,6 @@ export function Header() {
                     Se connecter
                   </Link>
                 )}
-                <Link
-                  to="/search"
-                  className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-med-nav transition-colors hover:bg-secondary hover:text-med-cta"
-                >
-                  <Search className="size-4" />
-                  Rechercher
-                </Link>
                 <div className="my-3 h-px bg-border" />
                 {footerLinks.map((link) => (
                   <Link

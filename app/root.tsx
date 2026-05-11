@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import "./globals.css";
+import { CartProvider } from "@/context/cart-context";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,7 +32,9 @@ export default function App() {
         <Links />
       </head>
       <body className="font-sans antialiased">
-        <Outlet />
+        <CartProvider>
+          <Outlet />
+        </CartProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

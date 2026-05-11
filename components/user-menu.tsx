@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks/use-auth"
-import { useNavigate } from "@remix-run/react"
-import { LogOut, Settings } from "lucide-react"
+import { useNavigate, Link } from "@remix-run/react"
+import { LogOut, Settings, Package, RotateCcw } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,6 +57,14 @@ export function UserMenu() {
         <DropdownMenuItem onClick={() => navigate("/settings")}>
           <Settings className="mr-2 h-4 w-4" />
           <span>Paramètres</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => navigate("/orders")}>
+          <Package className="mr-2 h-4 w-4" />
+          <span>Mes commandes</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => navigate("/refunds")}>
+          <RotateCcw className="mr-2 h-4 w-4" />
+          <span>Remboursements</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleSignOut} className="text-red-600">

@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "@remix-run/react";
 import type { MetaFunction } from "@remix-run/node";
 import { ChevronRight, CheckCircle2, MapPin, CreditCard, Building2, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { useCart } from "@/context/cart-context";
-import data from "@/data/data.json";
+import { useAuth } from "@/hooks/use-auth";
+import { fetchAddressesByUser, createOrderBatch, type ApiAdresse } from "@/lib/api";
 
 export const meta: MetaFunction = () => [
   { title: "Passer la commande – Athlea Systems" },
@@ -26,17 +25,36 @@ const PAYMENT_METHODS = [
 
 export default function CommandePage() {
   const { items, total, clearCart } = useCart();
+  const { user, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const [selectedAddress, setSelectedAddress] = useState(data.user.addresses[0].id);
+
+  const [addresses, setAddresses] = useState<ApiAdresse[]>([]);
+  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
   const [paymentMethod, setPaymentMethod] = useState("virement");
   const [confirmed, setConfirmed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [note, setNote] = useState("");
+  const [loadingAddresses, setLoadingAddresses] = useState(true);
+  const [createdFactureId, setCreatedFactureId] = useState<number | null>(null);
 
   const tva = total * 0.2;
   const totalTTC = total * 1.2;
 
-  const address = data.user.addresses.find((a) => a.id === selectedAddress);
+  useEffect(() => {
+    if (authLoading || !user) {
+      setLoadingAddresses(false);
+      return;
+    }
+    fetchAddressesByUser(user.id)
+      .then((data) => {
+        setAddresses(data);
+        if (data.length > 0) setSelectedAddressId(data[0].id);
+      })
+      .catch(() => setAddresses([]))
+      .finally(() => setLoadingAddresses(false));
+  }, [user, authLoading]);
+
+  const selectedAddress = addresses.find((a) => a.id === selectedAddressId) ?? null;
 
   if (items.length === 0 && !confirmed) {
     return (
@@ -58,11 +76,29 @@ export default function CommandePage() {
   }
 
   const handleConfirm = async () => {
+    if (!user || !selectedAddressId) return;
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    clearCart();
-    setConfirmed(true);
-    setIsSubmitting(false);
+    try {
+      const result = await createOrderBatch({
+        clientId:  user.id,
+        adresseId: selectedAddressId,
+        items: items.map((item) => ({
+          productsId:   item.productId,
+          productName:  item.name,
+          quantity:     item.qty,
+          unitaryPrice: item.price.toFixed(2),
+          taxRate:      "20.00",
+        })),
+      });
+      setCreatedFactureId(result.facture?.id ?? null);
+      clearCart();
+      setConfirmed(true);
+    } catch {
+      clearCart();
+      setConfirmed(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (confirmed) {
@@ -78,17 +114,22 @@ export default function CommandePage() {
             </div>
             <h1 className="text-2xl font-bold text-med-nav mb-3">Commande confirmée !</h1>
             <p className="text-muted-foreground mb-2">
-              Votre commande a bien été enregistrée. Vous recevrez un email de confirmation
-              ainsi qu'une facture à l'adresse <strong>{data.user.email}</strong>.
+              Votre commande a bien été enregistrée. Une facture a été émise
+              {user && <> au nom de <strong>{user.email}</strong></>}.
             </p>
             <p className="text-sm text-muted-foreground mb-8">
-              Délai de livraison estimé : <strong>24–48h ouvrées</strong>
+              {createdFactureId
+                ? <>Vous pouvez régler la facture <strong>#{createdFactureId}</strong> dès maintenant.</>
+                : <>Délai de livraison estimé : <strong>24–48h ouvrées</strong></>}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link to="/orders">
+              <Link to="/invoices">
                 <Button className="bg-med-cta hover:bg-med-hover text-primary-foreground">
-                  Voir mes commandes
+                  Régler ma facture
                 </Button>
+              </Link>
+              <Link to="/orders">
+                <Button variant="outline">Voir mes commandes</Button>
               </Link>
               <Link to="/products">
                 <Button variant="outline">Continuer mes achats</Button>
@@ -106,7 +147,6 @@ export default function CommandePage() {
       <Header />
       <main className="flex-1 bg-muted/30">
         <div className="mx-auto max-w-5xl px-6 py-8">
-          {/* Breadcrumb */}
           <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-med-cta">Accueil</Link>
             <ChevronRight className="size-3.5" />
@@ -118,7 +158,6 @@ export default function CommandePage() {
           <h1 className="text-2xl font-semibold text-med-nav mb-8">Finaliser la commande</h1>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            {/* Left column */}
             <div className="lg:col-span-2 flex flex-col gap-6">
               {/* Delivery address */}
               <Card>
@@ -129,32 +168,49 @@ export default function CommandePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <RadioGroup value={selectedAddress} onValueChange={setSelectedAddress} className="flex flex-col gap-3">
-                    {data.user.addresses.map((addr) => (
-                      <div
-                        key={addr.id}
-                        className={`flex items-start gap-3 rounded-lg border p-4 cursor-pointer transition-colors ${
-                          selectedAddress === addr.id
-                            ? "border-med-cta bg-secondary/50"
-                            : "border-border hover:border-med-cta/50"
-                        }`}
-                        onClick={() => setSelectedAddress(addr.id)}
-                      >
-                        <RadioGroupItem value={addr.id} id={addr.id} />
-                        <Label htmlFor={addr.id} className="cursor-pointer flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-medium text-med-nav text-sm">{addr.label}</span>
-                            {addr.isDefault && (
-                              <Badge variant="secondary" className="text-xs">Par défaut</Badge>
+                  {loadingAddresses ? (
+                    <p className="text-sm text-muted-foreground">Chargement des adresses…</p>
+                  ) : addresses.length === 0 ? (
+                    <div className="text-sm text-muted-foreground">
+                      <p>Aucune adresse enregistrée.</p>
+                      <Link to="/settings" className="text-med-cta hover:underline text-xs mt-2 inline-block">
+                        + Ajouter une adresse dans les paramètres
+                      </Link>
+                    </div>
+                  ) : (
+                    <RadioGroup
+                      value={selectedAddressId != null ? String(selectedAddressId) : ""}
+                      onValueChange={(v) => setSelectedAddressId(Number(v))}
+                      className="flex flex-col gap-3"
+                    >
+                      {addresses.map((addr) => (
+                        <div
+                          key={addr.id}
+                          className={`flex items-start gap-3 rounded-lg border p-4 cursor-pointer transition-colors ${
+                            selectedAddressId === addr.id
+                              ? "border-med-cta bg-secondary/50"
+                              : "border-border hover:border-med-cta/50"
+                          }`}
+                          onClick={() => setSelectedAddressId(addr.id)}
+                        >
+                          <RadioGroupItem value={String(addr.id)} id={`addr-${addr.id}`} />
+                          <Label htmlFor={`addr-${addr.id}`} className="cursor-pointer flex-1">
+                            <span className="font-medium text-med-nav text-sm">
+                              {addr.name ?? `Adresse ${addr.id}`}
+                            </span>
+                            {addr.adress && (
+                              <p className="text-sm text-muted-foreground">{addr.adress}</p>
                             )}
-                          </div>
-                          <p className="text-sm text-muted-foreground">{addr.name}</p>
-                          <p className="text-sm text-muted-foreground">{addr.street}</p>
-                          <p className="text-sm text-muted-foreground">{addr.zip} {addr.city}, {addr.country}</p>
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
+                            {(addr.city || addr.country) && (
+                              <p className="text-sm text-muted-foreground">
+                                {[addr.city, addr.country].filter(Boolean).join(", ")}
+                              </p>
+                            )}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  )}
                   <Link to="/settings" className="text-xs text-med-cta hover:underline mt-3 inline-block">
                     + Gérer mes adresses
                   </Link>
@@ -230,7 +286,7 @@ export default function CommandePage() {
               </Card>
             </div>
 
-            {/* Right: order summary */}
+            {/* Order summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 rounded-xl border border-border bg-background p-6 flex flex-col gap-4">
                 <h2 className="text-base font-semibold text-med-nav">Récapitulatif</h2>
@@ -272,12 +328,12 @@ export default function CommandePage() {
                   <span className="text-xl font-bold text-med-nav">{totalTTC.toFixed(2).replace(".", ",")} €</span>
                 </div>
 
-                {address && (
+                {selectedAddress && (
                   <div className="rounded-lg bg-muted/50 p-3 text-xs text-muted-foreground">
                     <p className="font-medium text-med-nav mb-1">Livraison à :</p>
-                    <p>{address.name}</p>
-                    <p>{address.street}</p>
-                    <p>{address.zip} {address.city}</p>
+                    <p>{selectedAddress.name}</p>
+                    {selectedAddress.adress && <p>{selectedAddress.adress}</p>}
+                    {selectedAddress.city && <p>{selectedAddress.city}</p>}
                   </div>
                 )}
 
@@ -285,10 +341,16 @@ export default function CommandePage() {
                   className="w-full bg-med-cta hover:bg-med-hover text-primary-foreground"
                   size="lg"
                   onClick={handleConfirm}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !user || (!selectedAddressId && addresses.length > 0)}
                 >
                   {isSubmitting ? "Confirmation en cours…" : "Confirmer la commande"}
                 </Button>
+
+                {!user && !authLoading && (
+                  <p className="text-xs text-center text-destructive">
+                    Vous devez être connecté pour passer une commande.
+                  </p>
+                )}
 
                 <p className="text-xs text-center text-muted-foreground">
                   En confirmant, vous acceptez nos{" "}

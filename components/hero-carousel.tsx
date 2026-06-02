@@ -2,22 +2,23 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { fetchCarrousels, fetchCarrouselWithItems, type ApiCarrouselItem } from "@/lib/api";
 
-interface CarouselSlide {
+interface Slide {
   id: number;
   title: string;
   description: string;
   ctaText: string;
   ctaLink: string;
   bgColor: string;
+  imageUrl?: string | null;
 }
 
-const slides: CarouselSlide[] = [
+const STATIC_SLIDES: Slide[] = [
   {
     id: 1,
     title: "Offre speciale : -20% sur les equipements medicaux",
-    description:
-      "Profitez de notre promotion exceptionnelle sur une large selection d'equipements medicaux professionnels. Offre limitee.",
+    description: "Profitez de notre promotion exceptionnelle sur une large selection d'equipements medicaux professionnels. Offre limitee.",
     ctaText: "Decouvrir l'offre",
     ctaLink: "/products",
     bgColor: "bg-med-nav",
@@ -25,33 +26,59 @@ const slides: CarouselSlide[] = [
   {
     id: 2,
     title: "Nouveautes : Gamme de soins dermatologiques",
-    description:
-      "Decouvrez notre nouvelle gamme de produits dermatologiques recommandes par les professionnels de sante.",
+    description: "Decouvrez notre nouvelle gamme de produits dermatologiques recommandes par les professionnels de sante.",
     ctaText: "Voir la gamme",
-    ctaLink: "/categories",
+    ctaLink: "/products",
     bgColor: "bg-med-cta",
   },
   {
     id: 3,
     title: "Livraison gratuite des 49 euros d'achat",
-    description:
-      "Commandez vos produits de sante en toute serenite. Livraison offerte partout en France metropolitaine.",
+    description: "Commandez vos produits de sante en toute serenite. Livraison offerte partout en France metropolitaine.",
     ctaText: "Commander maintenant",
     ctaLink: "/products",
     bgColor: "bg-med-nav",
   },
 ];
 
+function itemToSlide(item: ApiCarrouselItem, index: number): Slide {
+  return {
+    id: item.id,
+    title: item.title ?? `Slide ${index + 1}`,
+    description: item.subtitle ?? "",
+    ctaText: "Découvrir",
+    ctaLink: "/products",
+    bgColor: index % 2 === 0 ? "bg-med-nav" : "bg-med-cta",
+    imageUrl: item.imageId,
+  };
+}
+
 export function HeroCarousel() {
+  const [slides, setSlides] = useState<Slide[]>(STATIC_SLIDES);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    fetchCarrousels()
+      .then(async (carrousels) => {
+        const active = carrousels.filter((c) => c.active !== false);
+        if (active.length === 0) return;
+        const first = active[0];
+        const withItems = await fetchCarrouselWithItems(first.id).catch(() => null);
+        if (withItems && withItems.items && withItems.items.length > 0) {
+          const sorted = [...withItems.items].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+          setSlides(sorted.map((item, i) => itemToSlide(item, i)));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  }, []);
+  }, [slides.length]);
 
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+  }, [slides.length]);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 5000);
@@ -67,18 +94,27 @@ export function HeroCarousel() {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className={`flex min-w-full flex-col items-center justify-center px-6 py-20 text-primary-foreground md:py-28 lg:py-36 ${slide.bgColor}`}
+            className={`flex min-w-full flex-col items-center justify-center px-6 py-20 text-primary-foreground md:py-28 lg:py-36 ${slide.bgColor} relative`}
           >
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+            {slide.imageUrl && (
+              <img
+                src={slide.imageUrl}
+                alt={slide.title}
+                className="absolute inset-0 size-full object-cover opacity-20"
+              />
+            )}
+            <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
               <h2
                 className="text-2xl leading-tight font-semibold text-balance md:text-4xl lg:text-5xl"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 {slide.title}
               </h2>
-              <p className="max-w-xl text-base leading-relaxed text-primary-foreground/90 md:text-lg">
-                {slide.description}
-              </p>
+              {slide.description && (
+                <p className="max-w-xl text-base leading-relaxed text-primary-foreground/90 md:text-lg">
+                  {slide.description}
+                </p>
+              )}
               <Link to={slide.ctaLink}>
                 <Button
                   size="lg"
@@ -92,7 +128,6 @@ export function HeroCarousel() {
         ))}
       </div>
 
-      {/* Navigation arrows */}
       <Button
         variant="ghost"
         size="icon"
@@ -112,7 +147,6 @@ export function HeroCarousel() {
         <ChevronRight className="size-5" />
       </Button>
 
-      {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2">
         {slides.map((_, index) => (
           <button

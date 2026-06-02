@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 import {
   Stethoscope,
@@ -9,17 +10,10 @@ import {
   Microscope,
   Package,
 } from "lucide-react";
-import data from "@/data/data.json";
+import { fetchCategories, type ApiCategory } from "@/lib/api";
 
-interface Category {
-  id: string;
-  slug: string;
-  name: string;
-  description: string;
-  productCount: number;
-}
-
-const iconMap: Record<string, React.ReactNode> = {
+const iconMap: Record<number, React.ReactNode> = {};
+const iconsByName: Record<string, React.ReactNode> = {
   diagnostic: <Stethoscope className="size-8" />,
   protection: <Shield className="size-8" />,
   soins: <Bandage className="size-8" />,
@@ -27,11 +21,22 @@ const iconMap: Record<string, React.ReactNode> = {
   urgences: <AlertCircle className="size-8" />,
   orthopedie: <Bone className="size-8" />,
   imagerie: <Microscope className="size-8" />,
-  consommables: <Package className="size-8" />,
 };
 
+function getIcon(cat: ApiCategory): React.ReactNode {
+  if (cat.icones) return <span className="text-2xl">{cat.icones}</span>;
+  const nameKey = (cat.nom ?? "").toLowerCase().split(" ")[0];
+  return iconsByName[nameKey] ?? <Package className="size-8" />;
+}
+
 export function CategoriesGrid() {
-  const categories: Category[] = data.categories;
+  const [categories, setCategories] = useState<ApiCategory[]>([]);
+
+  useEffect(() => {
+    fetchCategories().then(setCategories).catch(() => setCategories([]));
+  }, []);
+
+  if (categories.length === 0) return null;
 
   return (
     <section className="px-6 py-14 md:py-20">
@@ -51,22 +56,19 @@ export function CategoriesGrid() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              to={`/categories/${category.slug}`}
+              to={`/categories/${category.id}`}
               className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-background p-6 text-center transition-all hover:border-med-cta hover:shadow-md"
             >
               <div className="flex size-16 items-center justify-center rounded-full bg-secondary text-med-cta transition-colors group-hover:bg-med-cta group-hover:text-primary-foreground">
-                {iconMap[category.id as keyof typeof iconMap] || <Package className="size-8" />}
+                {getIcon(category)}
               </div>
               <div>
                 <h3
                   className="text-sm font-semibold text-med-nav md:text-base"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  {category.name}
+                  {category.nom ?? `Catégorie ${category.id}`}
                 </h3>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {category.productCount} produits
-                </p>
               </div>
             </Link>
           ))}

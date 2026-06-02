@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { Link, useSearchParams } from "@remix-run/react";
-import type { MetaFunction } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { Search, SlidersHorizontal, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,11 +10,19 @@ import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import data from "@/data/data.json";
+import { fetchProducts, fetchCategories, type ApiProduct, type ApiCategory } from "@/lib/api";
 
 export const meta: MetaFunction = () => [
   { title: "Catalogue produits – Athlea Systems" },
 ];
+
+export async function loader(_: LoaderFunctionArgs) {
+  const [products, categories] = await Promise.all([
+    fetchProducts().catch(() => [] as ApiProduct[]),
+    fetchCategories().catch(() => [] as ApiCategory[]),
+  ]);
+  return { products, categories };
+}
 
 const SORT_OPTIONS = [
   { value: "name_asc", label: "Nom A–Z" },
@@ -23,25 +31,29 @@ const SORT_OPTIONS = [
   { value: "price_desc", label: "Prix décroissant" },
 ];
 
-function ProductCard({ product }: { product: (typeof data.products)[0] }) {
+function ProductCard({ product }: { product: ApiProduct }) {
+  const p = product.products;
+  const price = parseFloat(p.unitaryPrice ?? "0");
+  const available = (p.active ?? false) && (product.stocks?.quantity ?? 0) > 0;
+  const hasPromo = product.stocks?.quantity != null;
+
   return (
     <Link
-      to={`/products/${product.id}`}
+      to={`/products/${p.id}`}
       className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-background transition-all hover:border-med-cta hover:shadow-md"
     >
       <div className="relative aspect-square w-full bg-secondary">
-        <div className="flex size-full items-center justify-center text-med-cta/30">
-          <svg className="size-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </div>
-        {product.badge && (
-          <Badge className="absolute top-2 left-2 bg-med-cta text-primary-foreground hover:bg-med-cta text-xs">
-            {product.badge}
-          </Badge>
+        {p.linkPix ? (
+          <img src={p.linkPix} alt={p.names} className="size-full object-cover" />
+        ) : (
+          <div className="flex size-full items-center justify-center text-med-cta/30">
+            <svg className="size-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
         )}
-        {!product.available && (
+        {!available && (
           <div className="absolute inset-0 flex items-center justify-center bg-background/60">
             <Badge className="bg-muted-foreground text-primary-foreground hover:bg-muted-foreground">
               Indisponible
@@ -50,21 +62,18 @@ function ProductCard({ product }: { product: (typeof data.products)[0] }) {
         )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="text-xs text-muted-foreground">{product.reference}</p>
+        {product.categories?.nom && (
+          <p className="text-xs text-muted-foreground">{product.categories.nom}</p>
+        )}
         <h3 className="line-clamp-2 text-sm font-medium text-med-nav leading-snug">
-          {product.name}
+          {p.names}
         </h3>
         <div className="mt-auto flex items-end gap-2">
           <span className="text-base font-semibold text-med-nav">
-            {product.price.toFixed(2).replace(".", ",")} €
+            {price.toFixed(2).replace(".", ",")} €
           </span>
-          {product.originalPrice && (
-            <span className="text-xs text-muted-foreground line-through mb-0.5">
-              {product.originalPrice.toFixed(2).replace(".", ",")} €
-            </span>
-          )}
         </div>
-        {product.available ? (
+        {available ? (
           <div className="flex items-center gap-1.5">
             <div className="size-2 rounded-full bg-med-available" />
             <span className="text-xs text-med-available">En stock</span>
@@ -81,12 +90,14 @@ function ProductCard({ product }: { product: (typeof data.products)[0] }) {
 }
 
 function CategoryFilters({
+  categories,
   selected,
   onToggle,
   onClear,
 }: {
-  selected: string[];
-  onToggle: (id: string) => void;
+  categories: ApiCategory[];
+  selected: number[];
+  onToggle: (id: number) => void;
   onClear: () => void;
 }) {
   return (
@@ -99,7 +110,7 @@ function CategoryFilters({
           </button>
         )}
       </div>
-      {data.categories.map((cat) => (
+      {categories.map((cat) => (
         <div key={cat.id} className="flex items-center gap-2.5 py-1.5">
           <Checkbox
             id={`cat-${cat.id}`}
@@ -107,9 +118,8 @@ function CategoryFilters({
             onCheckedChange={() => onToggle(cat.id)}
           />
           <Label htmlFor={`cat-${cat.id}`} className="text-sm cursor-pointer flex-1">
-            {cat.name}
+            {cat.nom ?? `Catégorie ${cat.id}`}
           </Label>
-          <span className="text-xs text-muted-foreground">{cat.productCount}</span>
         </div>
       ))}
     </div>
@@ -117,15 +127,14 @@ function CategoryFilters({
 }
 
 export default function ProduitsIndex() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(
-    searchParams.get("cat") ? searchParams.get("cat")!.split(",") : []
-  );
+  const { products, categories } = useLoaderData<typeof loader>();
+
+  const [query, setQuery] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [sort, setSort] = useState("name_asc");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
 
-  const toggleCategory = (id: string) => {
+  const toggleCategory = (id: number) => {
     setSelectedCategories((prev) =>
       prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
     );
@@ -134,49 +143,52 @@ export default function ProduitsIndex() {
   const clearCategories = () => setSelectedCategories([]);
 
   const filtered = useMemo(() => {
-    let list = [...data.products];
+    let list = [...products];
 
     if (query.trim()) {
       const q = query.toLowerCase();
       list = list.filter(
         (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.reference.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q)
+          p.products.names.toLowerCase().includes(q) ||
+          (p.products.description ?? "").toLowerCase().includes(q) ||
+          (p.products.title ?? "").toLowerCase().includes(q)
       );
     }
 
     if (selectedCategories.length > 0) {
-      list = list.filter((p) => selectedCategories.includes(p.category));
+      list = list.filter(
+        (p) => p.products.categoryId != null && selectedCategories.includes(p.products.categoryId)
+      );
     }
 
     if (onlyAvailable) {
-      list = list.filter((p) => p.available);
+      list = list.filter(
+        (p) => (p.products.active ?? false) && (p.stocks?.quantity ?? 0) > 0
+      );
     }
 
     switch (sort) {
       case "name_asc":
-        list.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+        list.sort((a, b) => a.products.names.localeCompare(b.products.names, "fr"));
         break;
       case "name_desc":
-        list.sort((a, b) => b.name.localeCompare(a.name, "fr"));
+        list.sort((a, b) => b.products.names.localeCompare(a.products.names, "fr"));
         break;
       case "price_asc":
-        list.sort((a, b) => a.price - b.price);
+        list.sort((a, b) => parseFloat(a.products.unitaryPrice ?? "0") - parseFloat(b.products.unitaryPrice ?? "0"));
         break;
       case "price_desc":
-        list.sort((a, b) => b.price - a.price);
+        list.sort((a, b) => parseFloat(b.products.unitaryPrice ?? "0") - parseFloat(a.products.unitaryPrice ?? "0"));
         break;
     }
 
     return list;
-  }, [query, selectedCategories, sort, onlyAvailable]);
+  }, [query, selectedCategories, sort, onlyAvailable, products]);
 
   const activeFiltersCount = selectedCategories.length + (onlyAvailable ? 1 : 0);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-8">
-      {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
         <Link to="/" className="hover:text-med-cta">Accueil</Link>
         <ChevronRight className="size-3.5" />
@@ -188,12 +200,11 @@ export default function ProduitsIndex() {
         <span className="text-sm text-muted-foreground">{filtered.length} produit{filtered.length !== 1 ? "s" : ""}</span>
       </div>
 
-      {/* Search + sort bar */}
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-52">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
           <Input
-            placeholder="Rechercher un produit, une référence…"
+            placeholder="Rechercher un produit…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-9"
@@ -219,7 +230,6 @@ export default function ProduitsIndex() {
           </SelectContent>
         </Select>
 
-        {/* Mobile filter sheet */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" className="lg:hidden gap-2">
@@ -238,6 +248,7 @@ export default function ProduitsIndex() {
             </SheetHeader>
             <div className="px-1 pt-6 flex flex-col gap-6">
               <CategoryFilters
+                categories={categories}
                 selected={selectedCategories}
                 onToggle={toggleCategory}
                 onClear={clearCategories}
@@ -259,10 +270,10 @@ export default function ProduitsIndex() {
       </div>
 
       <div className="flex gap-8">
-        {/* Desktop sidebar filters */}
         <aside className="hidden lg:block w-56 shrink-0">
           <div className="sticky top-24 rounded-xl border border-border bg-background p-5 flex flex-col gap-5">
             <CategoryFilters
+              categories={categories}
               selected={selectedCategories}
               onToggle={toggleCategory}
               onClear={clearCategories}
@@ -281,13 +292,11 @@ export default function ProduitsIndex() {
           </div>
         </aside>
 
-        {/* Product grid */}
         <div className="flex-1 min-w-0">
-          {/* Active filter chips */}
           {selectedCategories.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
               {selectedCategories.map((catId) => {
-                const cat = data.categories.find((c) => c.id === catId);
+                const cat = categories.find((c) => c.id === catId);
                 return (
                   <Badge
                     key={catId}
@@ -295,7 +304,7 @@ export default function ProduitsIndex() {
                     className="gap-1.5 pr-1 cursor-pointer"
                     onClick={() => toggleCategory(catId)}
                   >
-                    {cat?.name}
+                    {cat?.nom ?? `Catégorie ${catId}`}
                     <X className="size-3" />
                   </Badge>
                 );
@@ -324,7 +333,7 @@ export default function ProduitsIndex() {
           ) : (
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
               {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.products.id} product={product} />
               ))}
             </div>
           )}

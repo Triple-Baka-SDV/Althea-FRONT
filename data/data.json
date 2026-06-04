@@ -1,0 +1,1358 @@
+{
+  "categories": [
+    {
+      "id": "diagnostic",
+      "slug": "diagnostic",
+      "name": "Diagnostic & Mesure",
+      "description": "Appareils et instruments pour le diagnostic médical",
+      "productCount": 5
+    },
+    {
+      "id": "protection",
+      "slug": "protection",
+      "name": "Protection & Hygiène",
+      "description": "Équipements de protection individuelle et hygiène",
+      "productCount": 5
+    },
+    {
+      "id": "soins",
+      "slug": "soins",
+      "name": "Soins & Pansements",
+      "description": "Consommables pour les soins et pansements",
+      "productCount": 5
+    },
+    {
+      "id": "mobilier",
+      "slug": "mobilier",
+      "name": "Mobilier Médical",
+      "description": "Tables d'examen, chaises et équipements de cabinet",
+      "productCount": 5
+    },
+    {
+      "id": "urgences",
+      "slug": "urgences",
+      "name": "Urgences & Réanimation",
+      "description": "Matériel d'urgence et de réanimation",
+      "productCount": 4
+    },
+    {
+      "id": "orthopedie",
+      "slug": "orthopedie",
+      "name": "Orthopédie & Rééducation",
+      "description": "Attelles, béquilles et matériel de rééducation",
+      "productCount": 4
+    },
+    {
+      "id": "imagerie",
+      "slug": "imagerie",
+      "name": "Imagerie & Examen",
+      "description": "Instruments d'examen et d'imagerie",
+      "productCount": 3
+    },
+    {
+      "id": "consommables",
+      "slug": "consommables",
+      "name": "Consommables",
+      "description": "Consommables médicaux divers",
+      "productCount": 3
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "reference": "DIAG-001",
+      "name": "Stéthoscope Littmann Classic III",
+      "category": "diagnostic",
+      "price": 89.9,
+      "originalPrice": 119.9,
+      "badge": "Promo",
+      "available": true,
+      "stock": 47,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Le Stéthoscope Littmann Classic III est l'instrument de référence pour les professionnels de santé. Sa double tête réversible permet l'auscultation des adultes et des pédiatries. Idéal pour la pratique en cabinet ou en milieu hospitalier.",
+      "features": [
+        "Double tête réversible adulte/pédiatrique",
+        "Membrane à accord de fréquence brevetée",
+        "Tubes doubles en PVC résistant",
+        "Longueur 69 cm",
+        "Disponible en plusieurs coloris"
+      ],
+      "specifications": {
+        "Matériau": "Acier inoxydable / PVC",
+        "Longueur": "69 cm",
+        "Poids": "148 g",
+        "Garantie": "5 ans",
+        "Norme": "CE Classe IIa"
+      },
+      "tva": 20
+    },
+    {
+      "id": 2,
+      "reference": "DIAG-002",
+      "name": "Tensiomètre Omron M6 Comfort",
+      "category": "diagnostic",
+      "price": 59.9,
+      "originalPrice": null,
+      "badge": "Top vente",
+      "available": true,
+      "stock": 32,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Le tensiomètre Omron M6 Comfort est un appareil de mesure de la pression artérielle au bras, validé cliniquement. Il propose une technologie IntelliSense pour un gonflage automatique adapté et une détection des arythmies cardiaques.",
+      "features": [
+        "Technologie IntelliSense",
+        "Détection des arythmies",
+        "Mémoire 60 mesures × 2 utilisateurs",
+        "Brassard Comfort Easy",
+        "Indicateur de positionnement du brassard"
+      ],
+      "specifications": {
+        "Méthode": "Oscillométrique",
+        "Plage de mesure": "0-299 mmHg",
+        "Précision pression": "±3 mmHg",
+        "Alimentation": "4 piles AA ou adaptateur",
+        "Norme": "CE, validé ESH/BHS"
+      },
+      "tva": 20
+    },
+    {
+      "id": 3,
+      "reference": "DIAG-003",
+      "name": "Oxymètre de pouls digital Nonin",
+      "category": "diagnostic",
+      "price": 29.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 89,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Oxymètre de pouls médical au doigt, de marque Nonin, leader mondial de la technologie d'oxymétrie. Mesure instantanée de la saturation en oxygène (SpO2) et de la fréquence cardiaque.",
+      "features": [
+        "Mesure SpO2 et fréquence cardiaque",
+        "Affichage OLED haute luminosité",
+        "Alarme sonore et visuelle",
+        "Résistant aux mouvements",
+        "Piles incluses"
+      ],
+      "specifications": {
+        "Plage SpO2": "0-100%",
+        "Précision SpO2": "±2% (70-100%)",
+        "Fréquence cardiaque": "20-300 bpm",
+        "Norme": "CE Classe IIa, FDA"
+      },
+      "tva": 20
+    },
+    {
+      "id": 4,
+      "reference": "DIAG-004",
+      "name": "Glucomètre FreeStyle Optium Neo",
+      "category": "diagnostic",
+      "price": 45.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 28,
+      "minOrderQty": 1,
+      "unit": "kit",
+      "description": "Lecteur de glycémie FreeStyle Optium Neo avec mesure de la cétonémie. Résultats en 5 secondes avec une très faible quantité de sang requise. Mémoire de 1000 résultats avec horodatage.",
+      "features": [
+        "Mesure glycémie et cétonémie",
+        "Résultat en 5 secondes",
+        "Mémoire 1000 résultats",
+        "Application mobile compatible",
+        "Volume sanguin : 0.6 µL"
+      ],
+      "specifications": {
+        "Plage glycémie": "1.1-27.8 mmol/L",
+        "Plage cétonémie": "0.0-8.0 mmol/L",
+        "Mémoire": "1000 résultats",
+        "Alimentation": "1 pile CR2032",
+        "Norme": "CE Classe IIb"
+      },
+      "tva": 20
+    },
+    {
+      "id": 5,
+      "reference": "DIAG-005",
+      "name": "Thermomètre infrarouge frontal Braun",
+      "category": "diagnostic",
+      "price": 34.5,
+      "originalPrice": null,
+      "badge": "Nouveau",
+      "available": true,
+      "stock": 61,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Thermomètre infrarouge sans contact Braun pour mesure frontale. Résultat en 1 seconde. Idéal pour les enfants et patients difficiles. Technologie professionnelle de précision.",
+      "features": [
+        "Sans contact, hygiénique",
+        "Résultat en 1 seconde",
+        "Mémoire 9 mesures",
+        "Indicateur fièvre par code couleur",
+        "Mode adulte/enfant/biberon"
+      ],
+      "specifications": {
+        "Plage mesure": "34.2°C - 42.2°C",
+        "Précision": "±0.2°C",
+        "Distance mesure": "1-5 cm",
+        "Alimentation": "2 piles AAA",
+        "Norme": "CE Classe IIa"
+      },
+      "tva": 20
+    },
+    {
+      "id": 6,
+      "reference": "PROT-001",
+      "name": "Masques FFP2 sans valve (boîte de 20)",
+      "category": "protection",
+      "price": 18.9,
+      "originalPrice": 24.9,
+      "badge": "Promo",
+      "available": true,
+      "stock": 450,
+      "minOrderQty": 5,
+      "unit": "boîte",
+      "description": "Masques de protection respiratoire FFP2 certifiés EN 149:2001, sans valve expiratoire. Protection contre les aérosols liquides et particules solides. Adaptés aux professionnels de santé exposés aux agents infectieux.",
+      "features": [
+        "Filtration ≥ 94% des aérosols",
+        "Sans valve expiratoire",
+        "Barette nasale ajustable",
+        "Système de fixation 4 lanières",
+        "Certifié EN 149:2001+A1:2009"
+      ],
+      "specifications": {
+        "Norme": "EN 149:2001+A1:2009 FFP2",
+        "Filtration": "≥ 94%",
+        "Fuite totale": "≤ 8%",
+        "Conditionnement": "20 masques/boîte"
+      },
+      "tva": 20
+    },
+    {
+      "id": 7,
+      "reference": "PROT-002",
+      "name": "Gants latex sans poudre (boîte de 100)",
+      "category": "protection",
+      "price": 18.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 200,
+      "minOrderQty": 5,
+      "unit": "boîte",
+      "description": "Gants d'examen en latex naturel, sans poudre, pour une protection optimale. Haute résistance aux déchirures et excellente sensibilité tactile pour les gestes médicaux précis.",
+      "features": [
+        "Sans poudre, sans latex allergisant",
+        "Haute résistance aux déchirures",
+        "Texturation pour meilleure prise",
+        "Manchette retreinte",
+        "Disponible S/M/L/XL"
+      ],
+      "specifications": {
+        "Matériau": "Latex naturel",
+        "Norme": "EN 455, EN 420",
+        "Conditionnement": "100 gants/boîte",
+        "Stérilité": "Non stérile"
+      },
+      "tva": 20
+    },
+    {
+      "id": 8,
+      "reference": "PROT-003",
+      "name": "Blouses jetables à usage unique (sachet de 10)",
+      "category": "protection",
+      "price": 24.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 150,
+      "minOrderQty": 3,
+      "unit": "sachet",
+      "description": "Blouses de protection en polypropylène non tissé pour professionnels de santé. Légères, respirantes et résistantes aux fluides corporels. À usage unique pour une hygiène optimale.",
+      "features": [
+        "Non tissé PP 35 g/m²",
+        "Résistante aux fluides",
+        "Fermeture dos par liens",
+        "Manches longues élastiquées",
+        "Taille unique"
+      ],
+      "specifications": {
+        "Matériau": "Polypropylène non tissé",
+        "Grammage": "35 g/m²",
+        "Norme": "EN 13795",
+        "Conditionnement": "10 blouses/sachet"
+      },
+      "tva": 20
+    },
+    {
+      "id": 9,
+      "reference": "PROT-004",
+      "name": "Lunettes de protection antiéclaboussures",
+      "category": "protection",
+      "price": 8.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 320,
+      "minOrderQty": 10,
+      "unit": "pièce",
+      "description": "Lunettes de protection enveloppantes contre les éclaboussures de liquides biologiques et les projections de particules. Verres anti-buée et monture légère pour un port prolongé.",
+      "features": [
+        "Protection frontale et latérale",
+        "Verres anti-buée traités",
+        "Monture légère ergonomique",
+        "Compatible avec lunettes de vue",
+        "Réutilisables et désinfectables"
+      ],
+      "specifications": {
+        "Norme": "EN 166:2002",
+        "Matériau verres": "Polycarbonate",
+        "Traitement": "Anti-buée, anti-rayures"
+      },
+      "tva": 20
+    },
+    {
+      "id": 10,
+      "reference": "PROT-005",
+      "name": "Gel hydroalcoolique virucide 500ml (lot de 6)",
+      "category": "protection",
+      "price": 28.9,
+      "originalPrice": 38.9,
+      "badge": "Promo",
+      "available": true,
+      "stock": 85,
+      "minOrderQty": 1,
+      "unit": "lot",
+      "description": "Solution hydro-alcoolique virucide pour la désinfection des mains sans eau. Conforme à la norme NF EN 14476+A2 (activité virucide). Formulation douce avec agents hydratants pour éviter le dessèchement cutané.",
+      "features": [
+        "Activité bactéricide, fongicide, virucide",
+        "Séchage rapide",
+        "Agents hydratants",
+        "Flacon pompe 500 ml",
+        "Lot de 6 flacons"
+      ],
+      "specifications": {
+        "Teneur alcool": "70% éthanol",
+        "Norme virucide": "EN 14476+A2",
+        "Norme bactéricide": "EN 1040",
+        "Volume": "6 × 500 ml"
+      },
+      "tva": 20
+    },
+    {
+      "id": 11,
+      "reference": "SOIN-001",
+      "name": "Compresses stériles 10×10 cm (boîte de 100)",
+      "category": "soins",
+      "price": 9.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 500,
+      "minOrderQty": 10,
+      "unit": "boîte",
+      "description": "Compresses de gaze stériles 10×10 cm, 12 plis, conditionnées individuellement. Idéales pour les soins de plaies, nettoyage et protection. Fabriquées en coton hydrophile de qualité médicale.",
+      "features": [
+        "Gaze 100% coton hydrophile",
+        "Stériles, conditionnement individuel",
+        "12 plis, non tissé",
+        "Absorbantes et douces",
+        "Sans résidu pelucheux"
+      ],
+      "specifications": {
+        "Dimensions": "10 × 10 cm",
+        "Plis": "12",
+        "Norme": "EN 141786",
+        "Conditionnement": "100 compresses/boîte"
+      },
+      "tva": 20
+    },
+    {
+      "id": 12,
+      "reference": "SOIN-002",
+      "name": "Pansements adhésifs assortis (boîte de 100)",
+      "category": "soins",
+      "price": 12.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 300,
+      "minOrderQty": 5,
+      "unit": "boîte",
+      "description": "Assortiment de pansements adhésifs pour plaies superficielles. Différentes tailles incluses pour s'adapter à toutes les blessures. Matière respirante, résistante à l'eau et hypoallergénique.",
+      "features": [
+        "Tissu non tissé respirant",
+        "Résistant à l'eau",
+        "Hypoallergénique",
+        "Pad absorbant stérile",
+        "Tailles assorties incluses"
+      ],
+      "specifications": {
+        "Norme": "EN 13726",
+        "Matériau": "Non tissé polyester",
+        "Conditionnement": "100 pansements/boîte"
+      },
+      "tva": 20
+    },
+    {
+      "id": 13,
+      "reference": "SOIN-003",
+      "name": "Bande élastique de contention 10 cm (lot de 10)",
+      "category": "soins",
+      "price": 22.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 120,
+      "minOrderQty": 1,
+      "unit": "lot",
+      "description": "Bandes élastiques de contention cohésive, auto-adhérentes, non adhérentes à la peau. Idéales pour les entorses, contusions et maintien de pansements. Couleurs assorties.",
+      "features": [
+        "Auto-adhérente, ne colle pas à la peau",
+        "Elasticité longitudinale",
+        "Lavable et réutilisable",
+        "Couleurs assorties",
+        "Largeur 10 cm, longueur 4 m"
+      ],
+      "specifications": {
+        "Largeur": "10 cm",
+        "Longueur": "4 m (étirée)",
+        "Conditionnement": "Lot de 10"
+      },
+      "tva": 20
+    },
+    {
+      "id": 14,
+      "reference": "SOIN-004",
+      "name": "Seringues 5 ml avec aiguille (boîte de 100)",
+      "category": "soins",
+      "price": 15.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 800,
+      "minOrderQty": 10,
+      "unit": "boîte",
+      "description": "Seringues à usage unique 5 ml avec aiguille 21G × 40 mm montée. Stériles, apyrogènes, non toxiques. Graduation claire pour dosage précis. Conditionnement individuel sous blister.",
+      "features": [
+        "Graduation mL et cc",
+        "Piston caoutchouc étanche",
+        "Aiguille biseautée tri-biseaux",
+        "Stériles et apyrogènes",
+        "Conditionnement individuel"
+      ],
+      "specifications": {
+        "Volume": "5 mL",
+        "Aiguille": "21G (0.8 mm) × 40 mm",
+        "Norme": "ISO 7886, EN ISO 23908",
+        "Conditionnement": "100/boîte"
+      },
+      "tva": 20
+    },
+    {
+      "id": 15,
+      "reference": "SOIN-005",
+      "name": "Kit de suture stérile (sachet de 10)",
+      "category": "soins",
+      "price": 34.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": false,
+      "stock": 0,
+      "minOrderQty": 1,
+      "unit": "sachet",
+      "description": "Kit de suture stérile complet pour soins des plaies lacérées. Chaque kit contient une aiguille courbe traumatique, du fil de suture résorbable et non résorbable, des ciseaux, une pince et des compresses.",
+      "features": [
+        "Aiguille courbe 1/2 cercle",
+        "Fil résorbable et non résorbable inclus",
+        "Ciseaux et pince inclus",
+        "Compresses stériles incluses",
+        "Conditionnement individuel"
+      ],
+      "specifications": {
+        "Norme": "EN 1639",
+        "Stérilité": "EO stérile",
+        "Conditionnement": "10 kits/sachet"
+      },
+      "tva": 20
+    },
+    {
+      "id": 16,
+      "reference": "MOB-001",
+      "name": "Table d'examen réglable électriquement",
+      "category": "mobilier",
+      "price": 1290.0,
+      "originalPrice": 1590.0,
+      "badge": "Promo",
+      "available": true,
+      "stock": 8,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Table d'examen médical à réglage électrique en hauteur. Revêtement simili cuir facile à désinfecter. Pliante avec dossier et repose-jambes réglables. Idéale pour cabinets médicaux, spécialistes et kinésithérapeutes.",
+      "features": [
+        "Réglage électrique en hauteur 45-90 cm",
+        "Dossier et repose-jambes réglables",
+        "Revêtement simili cuir lavable",
+        "Roulettes avec freins",
+        "Capacité : 250 kg"
+      ],
+      "specifications": {
+        "Hauteur réglable": "45-90 cm",
+        "Dimensions plateau": "195 × 65 cm",
+        "Charge max": "250 kg",
+        "Alimentation": "230V / 50Hz",
+        "Norme": "EN 1970"
+      },
+      "tva": 20
+    },
+    {
+      "id": 17,
+      "reference": "MOB-002",
+      "name": "Tabouret médical réglable à roulettes",
+      "category": "mobilier",
+      "price": 189.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 22,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Tabouret médical ergonomique à réglage pneumatique en hauteur. Siège rond revêtu simili cuir, 5 roulettes pivotantes. Adapté pour toutes les disciplines médicales.",
+      "features": [
+        "Réglage pneumatique hauteur",
+        "Siège rond anti-fatigue",
+        "5 roulettes pivotantes 360°",
+        "Revêtement simili cuir lavable",
+        "Hauteur assise 45-60 cm"
+      ],
+      "specifications": {
+        "Hauteur assise": "45-60 cm",
+        "Diamètre siège": "38 cm",
+        "Charge max": "120 kg",
+        "Matériau": "Acier / PU"
+      },
+      "tva": 20
+    },
+    {
+      "id": 18,
+      "reference": "MOB-003",
+      "name": "Fauteuil roulant léger aluminium",
+      "category": "mobilier",
+      "price": 490.0,
+      "originalPrice": 590.0,
+      "badge": "Promo",
+      "available": true,
+      "stock": 5,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Fauteuil roulant léger en aluminium pour utilisation en intérieur et extérieur. Pliable pour transport facile. Accoudoirs et repose-pieds amovibles. Certifié dispositif médical classe I.",
+      "features": [
+        "Cadre aluminium ultra-léger 13 kg",
+        "Pliable pour transport",
+        "Accoudoirs et repose-pieds amovibles",
+        "Roues arrière gonflables 24\"",
+        "Frein sur les deux roues"
+      ],
+      "specifications": {
+        "Poids": "13 kg",
+        "Largeur assise": "45 cm",
+        "Charge max": "100 kg",
+        "Norme": "EN 12183",
+        "Classe DM": "I"
+      },
+      "tva": 20
+    },
+    {
+      "id": 19,
+      "reference": "MOB-004",
+      "name": "Paravent médical 3 panneaux aluminium",
+      "category": "mobilier",
+      "price": 245.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 14,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Paravent d'examen 3 panneaux à cadre aluminium léger. Tissu lavable à 60°C. Idéal pour créer un espace de confidentialité dans votre cabinet ou salle de soins.",
+      "features": [
+        "3 panneaux articulés",
+        "Cadre aluminium léger",
+        "Tissu lavable 60°C",
+        "Hauteur 180 cm",
+        "Pieds antidérapants"
+      ],
+      "specifications": {
+        "Hauteur": "180 cm",
+        "Largeur totale": "3 × 60 cm",
+        "Matériau cadre": "Aluminium anodisé",
+        "Tissu": "Polyester lavable 60°C"
+      },
+      "tva": 20
+    },
+    {
+      "id": 20,
+      "reference": "MOB-005",
+      "name": "Chariot de soins inox 3 étagères",
+      "category": "mobilier",
+      "price": 320.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 11,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Chariot de soins en acier inoxydable 3 niveaux avec rebords de sécurité. Silencieux grâce aux roulettes avec freins. Facile à désinfecter, adapté aux environnements médicaux exigeants.",
+      "features": [
+        "Acier inoxydable 304",
+        "3 étagères avec rebords",
+        "4 roulettes dont 2 avec freins",
+        "Poignée ergonomique",
+        "Facilement désinfectable"
+      ],
+      "specifications": {
+        "Dimensions": "90 × 50 × 90 cm",
+        "Matériau": "Inox 304",
+        "Charge par étagère": "20 kg",
+        "Charge totale": "60 kg"
+      },
+      "tva": 20
+    },
+    {
+      "id": 21,
+      "reference": "URG-001",
+      "name": "Défibrillateur semi-automatique (DAE) AED Plus",
+      "category": "urgences",
+      "price": 1490.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 4,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Défibrillateur externe automatisé (DAE/AED) Zoll AED Plus. Guidage vocal et visuel pour RCP. Technologie CPR-D•padz pour mesure et guidage de la compression thoracique en temps réel.",
+      "features": [
+        "Guidage vocal et visuel",
+        "Analyse du rythme cardiaque automatique",
+        "Technologie CPR-D•padz",
+        "Batterie lithium 5 ans de standby",
+        "Résistant IP55 eau et poussière"
+      ],
+      "specifications": {
+        "Energie": "1-200 joules (escaladé)",
+        "Temps analyse": "< 7 secondes",
+        "Batterie": "Lithium 10 ans / 300 chocs",
+        "Norme": "CE, EN 60601-1",
+        "Indice protection": "IP55"
+      },
+      "tva": 20
+    },
+    {
+      "id": 22,
+      "reference": "URG-002",
+      "name": "Kit de réanimation adulte avec masque",
+      "category": "urgences",
+      "price": 24.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 67,
+      "minOrderQty": 5,
+      "unit": "kit",
+      "description": "Kit de réanimation adulte comprenant un masque facial de réanimation avec valve unidirectionnelle, un sac de transport et des filtres bactériens/viraux. Idéal pour les équipes de premiers secours.",
+      "features": [
+        "Masque transparent adulte",
+        "Valve anti-retour unidirectionnelle",
+        "Connexion 15/22 mm standard",
+        "Filtre bactérien/viral inclus",
+        "Sac de transport étanche"
+      ],
+      "specifications": {
+        "Type": "Masque réanimation adulte",
+        "Connexion": "15/22 mm",
+        "Norme": "EN 13544"
+      },
+      "tva": 20
+    },
+    {
+      "id": 23,
+      "reference": "URG-003",
+      "name": "Collier cervical réglable adulte",
+      "category": "urgences",
+      "price": 45.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 33,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Collier cervical d'immobilisation réglable pour adulte. Matériau polyéthylène rigide avec revêtement mousse. Fenêtre carotidienne pour surveillance du pouls. Compatible IRM.",
+      "features": [
+        "Hauteur ajustable 4 positions",
+        "Fenêtre carotidienne intégrée",
+        "Compatible IRM",
+        "Lavable et réutilisable",
+        "Fermeture velcro"
+      ],
+      "specifications": {
+        "Matériau": "Polyéthylène + mousse",
+        "Taille": "Adulte universel (réglable)",
+        "Compatible IRM": "Oui",
+        "Norme": "EN 1789"
+      },
+      "tva": 20
+    },
+    {
+      "id": 24,
+      "reference": "URG-004",
+      "name": "Civière pliante aluminium",
+      "category": "urgences",
+      "price": 390.0,
+      "originalPrice": 450.0,
+      "badge": "Promo",
+      "available": true,
+      "stock": 3,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Civière pliante légère à armature aluminium avec toile polyester résistante. Poignées rembourrées pour transport confortable. Utilisée par les équipes SMUR, sapeurs-pompiers et secouristes.",
+      "features": [
+        "Armature aluminium anodisé",
+        "Toile polyester haute résistance",
+        "Poignées rembourrées 4 positions",
+        "Repliage rapide une main",
+        "Sac de transport inclus"
+      ],
+      "specifications": {
+        "Poids": "8 kg",
+        "Dimensions ouvert": "210 × 58 cm",
+        "Charge max": "180 kg",
+        "Matériau": "Aluminium 6061 T6"
+      },
+      "tva": 20
+    },
+    {
+      "id": 25,
+      "reference": "ORTH-001",
+      "name": "Attelle de poignet Aircast A2",
+      "category": "orthopedie",
+      "price": 29.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 45,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Attelle de poignet rigide Aircast A2 pour entorses, tendinites et syndromes du canal carpien. Double attelle dorsale et palmaire en aluminium moulable. Disponible gauche/droite.",
+      "features": [
+        "Double attelle aluminium amovible",
+        "Moulable selon anatomie",
+        "Revêtement Coolflow respirant",
+        "Fermetures velcro réglables",
+        "Côté gauche ou droit au choix"
+      ],
+      "specifications": {
+        "Matériau": "Aluminium + mousse",
+        "Tailles": "S, M, L",
+        "Côté": "Gauche ou Droit"
+      },
+      "tva": 20
+    },
+    {
+      "id": 26,
+      "reference": "ORTH-002",
+      "name": "Béquilles axillaires réglables (paire)",
+      "category": "orthopedie",
+      "price": 45.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 26,
+      "minOrderQty": 1,
+      "unit": "paire",
+      "description": "Paire de béquilles axillaires en aluminium léger, réglables en hauteur. Appui axillaire anatomique et poignée ergonomique rembourrée. Embouts antidérapants fournis.",
+      "features": [
+        "Aluminium léger",
+        "Réglage 12 positions hauteur",
+        "Appui axillaire anatomique",
+        "Poignée rembourrée",
+        "Embouts antidérapants fournis"
+      ],
+      "specifications": {
+        "Hauteur réglable": "105-145 cm (totale)",
+        "Charge max": "100 kg",
+        "Matériau": "Aluminium anodisé"
+      },
+      "tva": 20
+    },
+    {
+      "id": 27,
+      "reference": "ORTH-003",
+      "name": "Genouillère de sport renforcée",
+      "category": "orthopedie",
+      "price": 19.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 72,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Genouillère compressive renforcée pour stabilisation du genou. Tissu élastique néoprène avec renforts latéraux et évidement patellaire. Idéale pour la rééducation et la prévention des blessures sportives.",
+      "features": [
+        "Néoprène 3 mm compressif",
+        "Renforts latéraux rigides",
+        "Évidement patellaire anatomique",
+        "Bord silicone anti-glissement",
+        "Lavable à 30°C"
+      ],
+      "specifications": {
+        "Matériau": "Néoprène / Nylon",
+        "Tailles": "XS à XXL",
+        "Lavage": "30°C"
+      },
+      "tva": 20
+    },
+    {
+      "id": 28,
+      "reference": "ORTH-004",
+      "name": "Semelles orthopédiques thermoformables (paire)",
+      "category": "orthopedie",
+      "price": 34.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 58,
+      "minOrderQty": 1,
+      "unit": "paire",
+      "description": "Semelles orthopédiques thermoformables à personnaliser selon l'empreinte du patient. Mousse EVA haute densité avec couche de gel viscoélastique. Absorbent les chocs et corrigent la posture.",
+      "features": [
+        "Thermoformable à 70°C",
+        "Mousse EVA haute densité",
+        "Gel viscoélastique",
+        "Couvercle en tissu respirant",
+        "Découpables aux ciseaux (38 à 47)"
+      ],
+      "specifications": {
+        "Matériau": "EVA + gel viscoélastique",
+        "Tailles": "37-47 (découpable)",
+        "Thermoformage": "70°C / 2 min"
+      },
+      "tva": 20
+    },
+    {
+      "id": 29,
+      "reference": "IMG-001",
+      "name": "Otoscope diagnostic LED Heine Beta 200",
+      "category": "imagerie",
+      "price": 89.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 18,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Otoscope diagnostic à LED haute performance Heine Beta 200. Illumination homogène et naturelle du conduit auditif. Grossissement 6×. Compatible avec specula jetables standard.",
+      "features": [
+        "Éclairage LED blanc pur",
+        "Grossissement 6×",
+        "Verre anti-reflet",
+        "Compatible specula jetables",
+        "Tête amovible pour stérilisation"
+      ],
+      "specifications": {
+        "Illumination": "LED 6000 K",
+        "Grossissement": "6×",
+        "Alimentation": "Batterie ou secteur (poignée)",
+        "Norme": "CE Classe IIa"
+      },
+      "tva": 20
+    },
+    {
+      "id": 30,
+      "reference": "IMG-002",
+      "name": "Ophtalmoscope direct Heine Mini 3000",
+      "category": "imagerie",
+      "price": 245.0,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 7,
+      "minOrderQty": 1,
+      "unit": "pièce",
+      "description": "Ophtalmoscope direct Heine Mini 3000 pour examen du fond d'œil. 12 ouvertures, 5 filtres dont le filtre rouge. Poignée à piles interchangeable compatible avec la gamme Beta.",
+      "features": [
+        "12 ouvertures différentes",
+        "5 filtres dont rouge et fente",
+        "Lentilles de -35 à +40 dioptries",
+        "Éclairage halogène 3.5V",
+        "Poignée beta compatible"
+      ],
+      "specifications": {
+        "Dioptries": "-35 à +40",
+        "Ouvertures": "12",
+        "Filtres": "5",
+        "Norme": "CE Classe IIa"
+      },
+      "tva": 20
+    },
+    {
+      "id": 31,
+      "reference": "IMG-003",
+      "name": "Lampe stylo diagnostic LED (lot de 6)",
+      "category": "imagerie",
+      "price": 12.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 145,
+      "minOrderQty": 5,
+      "unit": "lot",
+      "description": "Lampes stylo diagnostiques à LED pour examen clinique (réflexes, gorge, oreilles). Lumière blanche intense. Corps aluminium brossé avec clip de poche. Lot de 6 avec piles incluses.",
+      "features": [
+        "LED haute intensité 500 mcd",
+        "Corps aluminium brossé",
+        "Clip de poche inox",
+        "2 piles AAA incluses",
+        "Lot de 6 lampes"
+      ],
+      "specifications": {
+        "Éclairage": "LED 6500 K",
+        "Matériau": "Aluminium",
+        "Alimentation": "2 × AAA",
+        "Conditionnement": "6/lot"
+      },
+      "tva": 20
+    },
+    {
+      "id": 32,
+      "reference": "CONS-001",
+      "name": "Abaisse-langues bois stériles (sachet de 100)",
+      "category": "consommables",
+      "price": 6.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 900,
+      "minOrderQty": 10,
+      "unit": "sachet",
+      "description": "Abaisse-langues médicaux en bois de bouleau, stériles, conditionnés individuellement. Surface lisse et bords arrondis pour éviter les blessures. Longueur 15 cm.",
+      "features": [
+        "Bois de bouleau naturel",
+        "Stériles EO",
+        "Surface lisse bords arrondis",
+        "Longueur 15 cm",
+        "Emballage individuel"
+      ],
+      "specifications": {
+        "Matériau": "Bois de bouleau",
+        "Longueur": "15 cm",
+        "Stérilité": "Oxyde d'éthylène",
+        "Conditionnement": "100/sachet"
+      },
+      "tva": 20
+    },
+    {
+      "id": 33,
+      "reference": "CONS-002",
+      "name": "Électrodes ECG autocollantes (boîte de 100)",
+      "category": "consommables",
+      "price": 14.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 350,
+      "minOrderQty": 5,
+      "unit": "boîte",
+      "description": "Électrodes ECG à usage unique avec gel conducteur pré-appliqué. Pastille argentée, adhésif acrylique hypoallergénique. Compatibles avec tous les ECG standards (prise à pression ou agrafe).",
+      "features": [
+        "Gel conducteur pré-appliqué",
+        "Pastille argentée",
+        "Adhésif hypoallergénique",
+        "Connecteur universel snap",
+        "Condtionnement peel-off"
+      ],
+      "specifications": {
+        "Type": "Snap / Agrafe",
+        "Gel": "Pré-appliqué",
+        "Norme": "EN 60601-2-51",
+        "Conditionnement": "100/boîte"
+      },
+      "tva": 20
+    },
+    {
+      "id": 34,
+      "reference": "CONS-003",
+      "name": "Tubes sous vide EDTA violet 6mL (sachet de 50)",
+      "category": "consommables",
+      "price": 18.9,
+      "originalPrice": null,
+      "badge": null,
+      "available": true,
+      "stock": 280,
+      "minOrderQty": 5,
+      "unit": "sachet",
+      "description": "Tubes de prélèvement sanguin sous vide avec anticoagulant EDTA K2/K3, bouchon violet. Utilisés pour numération formule sanguine (NFS), groupe sanguin, hémoglobine glyquée.",
+      "features": [
+        "Anticoagulant EDTA K2 ou K3",
+        "Bouchon violet standardisé",
+        "Volume 6 mL",
+        "Code couleur universel",
+        "Stabilité 12 mois"
+      ],
+      "specifications": {
+        "Anticoagulant": "EDTA K2/K3",
+        "Volume": "6 mL",
+        "Aiguille compatible": "21G standard",
+        "Conditionnement": "50 tubes/sachet",
+        "Stabilité": "12 mois"
+      },
+      "tva": 20
+    }
+  ],
+  "orders": [
+    {
+      "id": "CMD-2025-0047",
+      "date": "2025-04-28",
+      "status": "livree",
+      "statusLabel": "Livrée",
+      "deliveryDate": "2025-05-02",
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 1, "name": "Stéthoscope Littmann Classic III", "qty": 2, "unitPrice": 89.9 },
+        { "productId": 6, "name": "Masques FFP2 sans valve (boîte de 20)", "qty": 10, "unitPrice": 18.9 }
+      ],
+      "subtotal": 368.8,
+      "tva": 73.76,
+      "total": 442.56,
+      "invoiceId": "FAC-2025-0047"
+    },
+    {
+      "id": "CMD-2025-0041",
+      "date": "2025-04-15",
+      "status": "livree",
+      "statusLabel": "Livrée",
+      "deliveryDate": "2025-04-19",
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 7, "name": "Gants latex sans poudre (boîte de 100)", "qty": 20, "unitPrice": 18.9 },
+        { "productId": 11, "name": "Compresses stériles 10×10 cm (boîte de 100)", "qty": 15, "unitPrice": 9.9 }
+      ],
+      "subtotal": 526.5,
+      "tva": 105.3,
+      "total": 631.8,
+      "invoiceId": "FAC-2025-0041"
+    },
+    {
+      "id": "CMD-2025-0039",
+      "date": "2025-04-02",
+      "status": "livree",
+      "statusLabel": "Livrée",
+      "deliveryDate": "2025-04-07",
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 2, "name": "Tensiomètre Omron M6 Comfort", "qty": 1, "unitPrice": 59.9 },
+        { "productId": 3, "name": "Oxymètre de pouls digital Nonin", "qty": 3, "unitPrice": 29.9 }
+      ],
+      "subtotal": 149.6,
+      "tva": 29.92,
+      "total": 179.52,
+      "invoiceId": "FAC-2025-0039"
+    },
+    {
+      "id": "CMD-2025-0035",
+      "date": "2025-03-18",
+      "status": "livree",
+      "statusLabel": "Livrée",
+      "deliveryDate": "2025-03-22",
+      "address": {
+        "name": "Cabinet Dr. Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 16, "name": "Table d'examen réglable électriquement", "qty": 1, "unitPrice": 1290.0 }
+      ],
+      "subtotal": 1290.0,
+      "tva": 258.0,
+      "total": 1548.0,
+      "invoiceId": "FAC-2025-0035"
+    },
+    {
+      "id": "CMD-2025-0028",
+      "date": "2025-02-27",
+      "status": "livree",
+      "statusLabel": "Livrée",
+      "deliveryDate": "2025-03-03",
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 10, "name": "Gel hydroalcoolique virucide 500ml (lot de 6)", "qty": 5, "unitPrice": 28.9 },
+        { "productId": 8, "name": "Blouses jetables à usage unique (sachet de 10)", "qty": 8, "unitPrice": 24.9 },
+        { "productId": 9, "name": "Lunettes de protection antiéclaboussures", "qty": 20, "unitPrice": 8.9 }
+      ],
+      "subtotal": 537.5,
+      "tva": 107.5,
+      "total": 645.0,
+      "invoiceId": "FAC-2025-0028"
+    },
+    {
+      "id": "CMD-2025-0062",
+      "date": "2025-05-01",
+      "status": "expediee",
+      "statusLabel": "Expédiée",
+      "deliveryDate": null,
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 29, "name": "Otoscope diagnostic LED Heine Beta 200", "qty": 1, "unitPrice": 89.9 },
+        { "productId": 31, "name": "Lampe stylo diagnostic LED (lot de 6)", "qty": 3, "unitPrice": 12.9 }
+      ],
+      "subtotal": 128.6,
+      "tva": 25.72,
+      "total": 154.32,
+      "invoiceId": "FAC-2025-0062"
+    },
+    {
+      "id": "CMD-2025-0068",
+      "date": "2025-05-03",
+      "status": "en_cours",
+      "statusLabel": "En préparation",
+      "deliveryDate": null,
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 14, "name": "Seringues 5 ml avec aiguille (boîte de 100)", "qty": 20, "unitPrice": 15.9 },
+        { "productId": 33, "name": "Électrodes ECG autocollantes (boîte de 100)", "qty": 5, "unitPrice": 14.9 }
+      ],
+      "subtotal": 392.5,
+      "tva": 78.5,
+      "total": 471.0,
+      "invoiceId": "FAC-2025-0068"
+    },
+    {
+      "id": "CMD-2025-0071",
+      "date": "2025-05-04",
+      "status": "en_attente",
+      "statusLabel": "En attente de validation",
+      "deliveryDate": null,
+      "address": {
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France"
+      },
+      "items": [
+        { "productId": 21, "name": "Défibrillateur semi-automatique (DAE) AED Plus", "qty": 1, "unitPrice": 1490.0 }
+      ],
+      "subtotal": 1490.0,
+      "tva": 298.0,
+      "total": 1788.0,
+      "invoiceId": null
+    }
+  ],
+  "invoices": [
+    {
+      "id": "FAC-2025-0047",
+      "orderId": "CMD-2025-0047",
+      "date": "2025-04-28",
+      "dueDate": "2025-05-28",
+      "status": "payee",
+      "statusLabel": "Payée",
+      "subtotal": 368.8,
+      "tva": 73.76,
+      "total": 442.56,
+      "paidAt": "2025-05-05"
+    },
+    {
+      "id": "FAC-2025-0041",
+      "orderId": "CMD-2025-0041",
+      "date": "2025-04-15",
+      "dueDate": "2025-05-15",
+      "status": "payee",
+      "statusLabel": "Payée",
+      "subtotal": 526.5,
+      "tva": 105.3,
+      "total": 631.8,
+      "paidAt": "2025-04-20"
+    },
+    {
+      "id": "FAC-2025-0039",
+      "orderId": "CMD-2025-0039",
+      "date": "2025-04-02",
+      "dueDate": "2025-05-02",
+      "status": "en_retard",
+      "statusLabel": "En retard",
+      "subtotal": 149.6,
+      "tva": 29.92,
+      "total": 179.52,
+      "paidAt": null
+    },
+    {
+      "id": "FAC-2025-0035",
+      "orderId": "CMD-2025-0035",
+      "date": "2025-03-18",
+      "dueDate": "2025-04-18",
+      "status": "payee",
+      "statusLabel": "Payée",
+      "subtotal": 1290.0,
+      "tva": 258.0,
+      "total": 1548.0,
+      "paidAt": "2025-03-25"
+    },
+    {
+      "id": "FAC-2025-0028",
+      "orderId": "CMD-2025-0028",
+      "date": "2025-02-27",
+      "dueDate": "2025-03-27",
+      "status": "payee",
+      "statusLabel": "Payée",
+      "subtotal": 537.5,
+      "tva": 107.5,
+      "total": 645.0,
+      "paidAt": "2025-03-10"
+    },
+    {
+      "id": "FAC-2025-0062",
+      "orderId": "CMD-2025-0062",
+      "date": "2025-05-01",
+      "dueDate": "2025-05-31",
+      "status": "a_payer",
+      "statusLabel": "À payer",
+      "subtotal": 128.6,
+      "tva": 25.72,
+      "total": 154.32,
+      "paidAt": null
+    },
+    {
+      "id": "FAC-2025-0068",
+      "orderId": "CMD-2025-0068",
+      "date": "2025-05-03",
+      "dueDate": "2025-06-02",
+      "status": "a_payer",
+      "statusLabel": "À payer",
+      "subtotal": 392.5,
+      "tva": 78.5,
+      "total": 471.0,
+      "paidAt": null
+    }
+  ],
+  "refunds": [
+    {
+      "id": "REM-2025-0012",
+      "orderId": "CMD-2025-0041",
+      "date": "2025-04-22",
+      "status": "approuvee",
+      "statusLabel": "Approuvée",
+      "reason": "produit_defectueux",
+      "reasonLabel": "Produit défectueux",
+      "items": [
+        { "productId": 11, "name": "Compresses stériles 10×10 cm (boîte de 100)", "qty": 5, "unitPrice": 9.9 }
+      ],
+      "amount": 49.5,
+      "description": "5 boîtes de compresses reçues avec emballages déchirés, non conformes aux normes de stérilité.",
+      "resolvedAt": "2025-04-25"
+    },
+    {
+      "id": "REM-2025-0008",
+      "orderId": "CMD-2025-0039",
+      "date": "2025-04-10",
+      "status": "refusee",
+      "statusLabel": "Refusée",
+      "reason": "erreur_commande",
+      "reasonLabel": "Erreur de commande",
+      "items": [
+        { "productId": 3, "name": "Oxymètre de pouls digital Nonin", "qty": 1, "unitPrice": 29.9 }
+      ],
+      "amount": 29.9,
+      "description": "Commande passée par erreur, produit déjà ouvert et utilisé. Non éligible au retour.",
+      "resolvedAt": "2025-04-14"
+    },
+    {
+      "id": "REM-2025-0015",
+      "orderId": "CMD-2025-0047",
+      "date": "2025-05-01",
+      "status": "en_attente",
+      "statusLabel": "En attente",
+      "reason": "produit_non_conforme",
+      "reasonLabel": "Produit non conforme",
+      "items": [
+        { "productId": 6, "name": "Masques FFP2 sans valve (boîte de 20)", "qty": 3, "unitPrice": 18.9 }
+      ],
+      "amount": 56.7,
+      "description": "Les masques reçus ne correspondent pas à la certification EN 149 indiquée sur l'emballage.",
+      "resolvedAt": null
+    }
+  ],
+  "user": {
+    "name": "Dr. Marie Dupont",
+    "email": "marie.dupont@cabinet-medical.fr",
+    "phone": "01 42 00 11 22",
+    "rpps": "10003456789",
+    "specialty": "Médecine générale",
+    "addresses": [
+      {
+        "id": "addr-1",
+        "label": "Cabinet principal",
+        "name": "Dr. Marie Dupont",
+        "street": "12 rue de la Paix",
+        "city": "Paris",
+        "zip": "75001",
+        "country": "France",
+        "isDefault": true
+      },
+      {
+        "id": "addr-2",
+        "label": "Cabinet secondaire",
+        "name": "Dr. Marie Dupont",
+        "street": "8 avenue Gambetta",
+        "city": "Vincennes",
+        "zip": "94300",
+        "country": "France",
+        "isDefault": false
+      }
+    ],
+    "billing": {
+      "companyName": "Cabinet Médical Dr. Dupont",
+      "siret": "123 456 789 00012",
+      "tvaIntra": "FR12345678900",
+      "address": "12 rue de la Paix, 75001 Paris"
+    }
+  }
+}

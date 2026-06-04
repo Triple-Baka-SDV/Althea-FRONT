@@ -4,7 +4,7 @@ Your authentication system is now fully configured! Here's how to use it:
 
 ## Environment Variables
 
-Add these to your `.env.local` file in the Athlea-Front root:
+Add these to your `.env.local` file in the Althea-Front root:
 
 ```env
 VITE_AUTH_URL=http://localhost:3001
@@ -110,7 +110,7 @@ import { UserMenu } from "@/components/user-menu"
 export function Header() {
   return (
     <header className="flex justify-between items-center p-4">
-      <h1>Athlea</h1>
+      <h1>Althea</h1>
       <UserMenu />
     </header>
   )

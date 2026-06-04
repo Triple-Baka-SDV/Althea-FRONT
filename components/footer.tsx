@@ -5,14 +5,14 @@ const footerNav = {
   boutique: [
     { label: "Accueil", href: "/" },
     { label: "Categories", href: "/categories" },
-    { label: "Produits", href: "/produits" },
-    { label: "Top Produits", href: "/produits?top=true" },
+    { label: "Produits", href: "/products" },
+    { label: "Top Produits", href: "/products?top=true" },
   ],
   aide: [
     { label: "Contact", href: "/contact" },
     { label: "ChatBot", href: "/chatbot" },
     { label: "FAQ", href: "/faq" },
-    { label: "Suivi de commande", href: "/compte/commandes" },
+    { label: "Suivi de commande", href: "/compte/orders" },
   ],
   legal: [
     { label: "Mentions legales", href: "/mentions-legales" },
@@ -44,7 +44,7 @@ export function Footer() {
                 className="text-lg font-semibold text-primary-foreground"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Athlea Systems
+                Althea Systems
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-primary-foreground/70">
@@ -137,7 +137,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 flex items-center justify-between border-t border-primary-foreground/10 pt-6">
           <p className="text-sm text-primary-foreground/50">
-            {"2026 Athlea Systems. Tous droits reserves."}
+            {"2026 Althea Systems. Tous droits reserves."}
           </p>
           <div className="flex items-center gap-3">
             {socialLinks.map((social) => (

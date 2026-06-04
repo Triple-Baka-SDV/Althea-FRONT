@@ -1,0 +1,37 @@
+services:
+  front-office:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Vite inline ces vars dans le bundle client au build — elles doivent
+        # être les URLs joignables depuis le NAVIGATEUR, pas les noms de
+        # services docker.
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:3000}
+        - VITE_AUTH_URL=${VITE_AUTH_URL:-http://localhost:3001}
+        - VITE_BACK_OFFICE_URL=${VITE_BACK_OFFICE_URL:-http://localhost:3002}
+    restart: always
+    ports:
+      - "${FRONT_PORT:-5173}:5173"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=5173
+    networks:
+      - medical-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5173/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  # Réseau partagé avec Althea-API (product-service / auth-service).
+  # Démarrer la stack API en premier — son docker-compose le crée.
+  medical-network:
+    external: true
+    name: medical-network

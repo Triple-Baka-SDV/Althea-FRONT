@@ -1,0 +1,14 @@
+node_modules
+build
+.cache
+*.log
+.env
+.env.*
+!.env.example
+.git
+.gitignore
+.vscode
+.idea
+*.tsbuildinfo
+README.md
+AUTH_SETUP.md

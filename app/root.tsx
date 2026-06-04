@@ -7,10 +7,11 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import "./globals.css";
+import { CartProvider } from "@/context/cart-context";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Athlea Systems - Votre pharmacie en ligne" },
+    { title: "Althea Systems - Votre pharmacie en ligne" },
     { name: "description", content: "Althea Systems - Achetez vos produits medicaux en ligne. Large choix de produits de sante, livraison rapide et service de qualite." },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { charSet: "utf-8" },
@@ -31,7 +32,9 @@ export default function App() {
         <Links />
       </head>
       <body className="font-sans antialiased">
-        <Outlet />
+        <CartProvider>
+          <Outlet />
+        </CartProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

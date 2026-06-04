@@ -62,7 +62,7 @@ import {
 } from "@/lib/validators";
 
 export const meta: MetaFunction = () => [
-  { title: "Paramètres – Athlea Systems" },
+  { title: "Paramètres – Althea Systems" },
 ];
 
 // ─── Shared UI helpers ───────────────────────────────────────────────────────
@@ -689,7 +689,7 @@ function BillingTab() {
         <SectionHeader
           icon={Building2}
           title="Informations de facturation"
-          description="Apparaissent sur toutes vos factures Athlea Systems."
+          description="Apparaissent sur toutes vos factures Althea Systems."
         />
         <CardContent className="flex flex-col gap-5">
           {status && <Alert kind={status.kind} message={status.message} />}
@@ -914,7 +914,7 @@ function NotificationsTab() {
       <SectionHeader
         icon={Bell}
         title="Préférences de notifications"
-        description="Gérez les e-mails envoyés par Athlea Systems."
+        description="Gérez les e-mails envoyés par Althea Systems."
       />
       <CardContent className="flex flex-col gap-6">
         {status && <Alert kind={status.kind} message={status.message} />}

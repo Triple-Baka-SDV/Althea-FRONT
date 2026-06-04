@@ -14,12 +14,12 @@ import { useAuth } from "@/hooks/use-auth";
 import { fetchAddressesByUser, createOrderBatch, type ApiAdresse } from "@/lib/api";
 
 export const meta: MetaFunction = () => [
-  { title: "Passer la commande – Athlea Systems" },
+  { title: "Passer la commande – Althea Systems" },
 ];
 
 const PAYMENT_METHODS = [
   { id: "virement", label: "Virement bancaire", desc: "Délai de traitement : 1–2 jours ouvrés", icon: Building2 },
-  { id: "cheque", label: "Chèque professionnel", desc: "À l'ordre d'Athlea Systems", icon: CreditCard },
+  { id: "cheque", label: "Chèque professionnel", desc: "À l'ordre d'Althea Systems", icon: CreditCard },
   { id: "cb", label: "Carte bancaire", desc: "Visa, Mastercard, Amex", icon: CreditCard },
 ];
 

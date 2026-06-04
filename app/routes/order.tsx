@@ -3,7 +3,7 @@ import { useNavigate } from "@remix-run/react";
 import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => [
-  { title: "Passer la commande – Athlea Systems" },
+  { title: "Passer la commande – Althea Systems" },
 ];
 
 export default function OrderRedirect() {

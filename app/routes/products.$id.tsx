@@ -27,7 +27,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => [
-  { title: data ? `${data.product.products.names} – Athlea Systems` : "Produit – Athlea Systems" },
+  { title: data ? `${data.product.products.names} – Althea Systems` : "Produit – Althea Systems" },
 ];
 
 export default function ProduitDetail() {

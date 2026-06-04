@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { fetchProducts, fetchCategories, type ApiProduct, type ApiCategory } from "@/lib/api";
 
 export const meta: MetaFunction = () => [
-  { title: "Catalogue produits – Athlea Systems" },
+  { title: "Catalogue produits – Althea Systems" },
 ];
 
 export async function loader(_: LoaderFunctionArgs) {

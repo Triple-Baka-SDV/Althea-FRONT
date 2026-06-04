@@ -23,7 +23,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => [
-  { title: `${data?.category.nom ?? "Catégorie"} – Athlea Systems` },
+  { title: `${data?.category.nom ?? "Catégorie"} – Althea Systems` },
   { name: "description", content: `Parcourez nos produits de la catégorie ${data?.category.nom ?? ""}` },
 ];
 

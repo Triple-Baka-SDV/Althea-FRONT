@@ -68,7 +68,7 @@ export function Header() {
             <span className="text-lg font-semibold text-primary-foreground">AT</span>
           </div>
           <span className="text-xl font-semibold text-med-nav" style={{ fontFamily: "var(--font-heading)" }}>
-            Athlea Systems
+            Althea Systems
           </span>
         </Link>
 

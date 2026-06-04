@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { useCart } from "@/context/cart-context";
 
 export const meta: MetaFunction = () => [
-  { title: "Mon panier – Athlea Systems" },
+  { title: "Mon panier – Althea Systems" },
 ];
 
 export default function PanierPage() {

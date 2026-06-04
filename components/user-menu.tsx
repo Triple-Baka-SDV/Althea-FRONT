@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/use-auth"
-import { useNavigate, Link } from "@remix-run/react"
+import { useNavigate } from "@remix-run/react"
 import { LogOut, Settings, Package, RotateCcw, Shield } from "lucide-react"
 import {
   DropdownMenu,
@@ -10,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { authClient } from "@/lib/auth-client"
 
 const BACK_OFFICE_URL =

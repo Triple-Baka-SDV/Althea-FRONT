@@ -54,7 +54,7 @@ import {
 import { AlertCircle } from "lucide-react";
 
 export const meta: MetaFunction = () => [
-  { title: "Remboursements – Athlea Systems" },
+  { title: "Remboursements – Althea Systems" },
 ];
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.ElementType }> = {
@@ -158,26 +158,32 @@ function NewRefundModal({
 
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm">Facture concernée *</Label>
-                <Select
-                  value={invoiceId}
-                  onValueChange={(v) => {
-                    setInvoiceId(v);
-                    clear("invoiceId");
-                  }}
-                >
-                  <SelectTrigger aria-invalid={!!errors.invoiceId}>
-                    <SelectValue placeholder="Sélectionnez une facture" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {invoices.map((inv) => (
-                      <SelectItem key={inv.factures.id} value={String(inv.factures.id)}>
-                        #{inv.factures.id} —{" "}
-                        {new Date(inv.factures.dateCreation).toLocaleDateString("fr-FR")} (
-                        {parseFloat(inv.factures.montant ?? "0").toFixed(2).replace(".", ",")} € TTC)
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                {invoices.length === 0 ? (
+                  <div className="rounded-md border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
+                    Aucune facture éligible. Toutes vos factures ont déjà fait l'objet d'une demande de remboursement.
+                  </div>
+                ) : (
+                  <Select
+                    value={invoiceId}
+                    onValueChange={(v) => {
+                      setInvoiceId(v);
+                      clear("invoiceId");
+                    }}
+                  >
+                    <SelectTrigger aria-invalid={!!errors.invoiceId}>
+                      <SelectValue placeholder="Sélectionnez une facture" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {invoices.map((inv) => (
+                        <SelectItem key={inv.factures.id} value={String(inv.factures.id)}>
+                          #{inv.factures.id} —{" "}
+                          {new Date(inv.factures.dateCreation).toLocaleDateString("fr-FR")} (
+                          {parseFloat(inv.factures.montant ?? "0").toFixed(2).replace(".", ",")} € TTC)
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
                 {errors.invoiceId && (
                   <p className="text-xs text-destructive">{errors.invoiceId}</p>
                 )}
@@ -237,7 +243,7 @@ function NewRefundModal({
               <Button
                 className="bg-med-cta hover:bg-med-hover text-primary-foreground"
                 onClick={handleSubmit}
-                disabled={isSubmitting}
+                disabled={isSubmitting || invoices.length === 0}
               >
                 {isSubmitting ? "Envoi…" : "Soumettre la demande"}
               </Button>
@@ -410,7 +416,7 @@ export default function RemboursementsPage() {
               <RotateCcw className="size-5" />
             </div>
             <div className="text-sm">
-              <p className="font-medium text-med-nav mb-1">Politique de retour Athlea Systems</p>
+              <p className="font-medium text-med-nav mb-1">Politique de retour Althea Systems</p>
               <p className="text-muted-foreground leading-relaxed">
                 Vous disposez de <strong>30 jours</strong> après réception pour retourner un produit non ouvert.
                 Les produits défectueux ou non conformes sont remboursés sous <strong>5–10 jours ouvrés</strong> après validation.
@@ -480,7 +486,9 @@ export default function RemboursementsPage() {
 
       {showModal && user && (
         <NewRefundModal
-          invoices={invoices}
+          invoices={invoices.filter(
+            (inv) => !avoirs.some((a) => a.idSupprime === inv.factures.id),
+          )}
           onClose={() => setShowModal(false)}
           onSubmit={handleNewRefund}
         />

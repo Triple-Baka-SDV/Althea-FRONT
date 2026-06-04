@@ -11,7 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { fetchOrdersByClient, type ApiOrder } from "@/lib/api";
 
 export const meta: MetaFunction = () => [
-  { title: "Historique des commandes – Athlea Systems" },
+  { title: "Historique des commandes – Althea Systems" },
 ];
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.ElementType }> = {
@@ -20,6 +20,8 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.
   expediee:   { label: "Expédiée",      color: "bg-purple-50 text-purple-700 border-purple-200",                    icon: Truck        },
   livree:     { label: "Livrée",        color: "bg-med-available/10 text-med-available border-med-available/30",    icon: CheckCircle2 },
   annulee:    { label: "Annulée",       color: "bg-destructive/10 text-destructive border-destructive/30",           icon: XCircle      },
+  remboursee: { label: "Remboursée",    color: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",                  icon: RotateCcw    },
+  remboursée: { label: "Remboursée",    color: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",                  icon: RotateCcw    },
 };
 
 // One order group = one checkout session (shared commandeRef)

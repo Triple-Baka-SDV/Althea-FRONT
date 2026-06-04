@@ -10,6 +10,7 @@ import {
   AlertCircle,
   Clock,
   Building2,
+  RotateCcw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -50,7 +51,7 @@ import {
 } from "@/lib/validators";
 
 export const meta: MetaFunction = () => [
-  { title: "Mes factures – Athlea Systems" },
+  { title: "Mes factures – Althea Systems" },
 ];
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.ElementType }> = {
@@ -59,10 +60,16 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.
   payée: { label: "Payée", color: "bg-med-available/10 text-med-available border-med-available/30", icon: CheckCircle2 },
   payee: { label: "Payée", color: "bg-med-available/10 text-med-available border-med-available/30", icon: CheckCircle2 },
   en_retard: { label: "En retard", color: "bg-destructive/10 text-destructive border-destructive/30", icon: AlertCircle },
+  remboursee: { label: "Remboursée", color: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200", icon: RotateCcw },
+  remboursée: { label: "Remboursée", color: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200", icon: RotateCcw },
 };
 
 function isPaid(statut: string | null) {
   return statut === "payée" || statut === "payee";
+}
+
+function isRefunded(statut: string | null) {
+  return statut === "remboursee" || statut === "remboursée";
 }
 
 function StatusBadge({ status }: { status: string | null }) {
@@ -348,7 +355,7 @@ function PaymentModal({
                     <p className="text-xs text-destructive">{errors.bankingInfos}</p>
                   ) : (
                     <p className="text-xs text-muted-foreground">
-                      À libeller à l'ordre de <strong>Athlea Systems</strong>.
+                      À libeller à l'ordre de <strong>Althea Systems</strong>.
                     </p>
                   )}
                 </div>
@@ -471,14 +478,18 @@ export default function FacturesPage() {
     );
   };
 
-  const pending = invoices.filter((i) => !isPaid(i.factures.statut));
+  const pending = invoices.filter(
+    (i) => !isPaid(i.factures.statut) && !isRefunded(i.factures.statut),
+  );
   const paid = invoices.filter((i) => isPaid(i.factures.statut));
+  const refunded = invoices.filter((i) => isRefunded(i.factures.statut));
   const totalPending = pending.reduce((acc, i) => acc + parseFloat(i.factures.montant ?? "0"), 0);
 
   const InvoiceRow = ({ inv }: { inv: ApiFacture }) => {
     const statut = inv.factures.statut;
     const montant = parseFloat(inv.factures.montant ?? "0");
     const paye = isPaid(statut);
+    const rembourse = isRefunded(statut);
     return (
       <div className="flex flex-wrap items-center gap-3 py-4 border-b border-border last:border-0">
         <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -532,7 +543,7 @@ export default function FacturesPage() {
               <Download className="size-3.5" />
               {downloadingId === inv.factures.id ? "..." : "PDF"}
             </Button>
-            {!paye && (
+            {!paye && !rembourse && (
               <Button
                 size="sm"
                 className="bg-med-cta hover:bg-med-hover text-primary-foreground gap-1.5 text-xs"
@@ -605,6 +616,7 @@ export default function FacturesPage() {
                   <TabsTrigger value="all">Toutes ({invoices.length})</TabsTrigger>
                   <TabsTrigger value="pending">À payer ({pending.length})</TabsTrigger>
                   <TabsTrigger value="paid">Payées ({paid.length})</TabsTrigger>
+                  <TabsTrigger value="refunded">Remboursées ({refunded.length})</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="all">
@@ -636,6 +648,16 @@ export default function FacturesPage() {
                   ) : (
                     <div className="rounded-xl border border-border bg-background px-5">
                       {paid.map((inv) => <InvoiceRow key={inv.factures.id} inv={inv} />)}
+                    </div>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="refunded">
+                  {refunded.length === 0 ? (
+                    <p className="text-center py-16 text-muted-foreground">Aucune facture remboursée</p>
+                  ) : (
+                    <div className="rounded-xl border border-border bg-background px-5">
+                      {refunded.map((inv) => <InvoiceRow key={inv.factures.id} inv={inv} />)}
                     </div>
                   )}
                 </TabsContent>
